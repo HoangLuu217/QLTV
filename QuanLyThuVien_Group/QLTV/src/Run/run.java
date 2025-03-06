@@ -4,9 +4,12 @@
  */
 package Run;
 
+import DAO.AdminDAO;
+import DAO.DatabaseConnection;
+import Model.Admin;
+import java.sql.SQLException;
+import java.util.List;
 
-import DAO.*;
-import java.util.Scanner;
 /**
  *
  * @author Admin
@@ -14,26 +17,60 @@ import java.util.Scanner;
 public class run {
 
     public run() {
-          DatabaseConnection cn = new DatabaseConnection();
-          
+        DatabaseConnection cn = new DatabaseConnection();
     }
- 
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Test database connection
         DatabaseConnection cnn = new DatabaseConnection();
-      if(cnn != null){
-          System.out.println("ok");
-      }else{
-          System.out.println("Not Ok");
-      }
-        
-        BookDAO bD = new BookDAO();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter book: ");
-        String bookID = sc.nextLine();
-                }
-    
+        if (cnn != null) {
+            System.out.println("Database connection: OK");
+        } else {
+            System.out.println("Database connection: Not OK");
+        }
+
+        // Test querying admin data
+        try {
+            AdminDAO adminDAO = new AdminDAO();
+            List<Admin> admins = adminDAO.getAll();
+            System.out.println("Admin data:");
+            for (Admin admin : admins) {
+                System.out.println(admin);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Example of inserting a new admin
+        try {
+            AdminDAO adminDAO = new AdminDAO();
+            Admin newAdmin = new Admin("AD123", new java.util.Date(), "Male", "123 Main St", 1);
+            adminDAO.insert(newAdmin);
+            System.out.println("Inserted new admin: " + newAdmin);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Example of updating an existing admin
+        try {
+            AdminDAO adminDAO = new AdminDAO();
+            Admin updatedAdmin = new Admin("AD123", new java.util.Date(), "Female", "456 Main St", 2);
+            adminDAO.update(updatedAdmin);
+            System.out.println("Updated admin: " + updatedAdmin);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Example of deleting an admin
+        try {
+            AdminDAO adminDAO = new AdminDAO();
+            adminDAO.delete("AD123");
+            System.out.println("Deleted admin with ID: AD123");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

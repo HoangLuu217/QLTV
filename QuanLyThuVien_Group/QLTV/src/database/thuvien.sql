@@ -144,3 +144,15 @@ CREATE TABLE Bill (
 	FOREIGN KEY (Cid) REFERENCES Customer(Cid),
     FOREIGN KEY (employeeCode) REFERENCES Employee(Eid)
 );
+
+USE QLTV10;
+
+-- Insert sample data into the Account table
+INSERT INTO Account (AccountId, username, APass) VALUES (1, 'hoangluu217', 'hoangluu217');
+INSERT INTO Account (AccountId, username, APass) VALUES (2, 'admin2', 'password2');
+INSERT INTO Account (AccountId, username, APass) VALUES (3, 'admin3', 'password3');
+
+-- Insert sample data into the Admin table
+INSERT INTO Admin (ADid, ADbirthDate, ADgender, ADaddress, AccountId) VALUES ('AD001', '1980-01-01', 'Male', '123 Main St', 1);
+INSERT INTO Admin (ADid, ADbirthDate, ADgender, ADaddress, AccountId) VALUES ('AD002', '1985-05-15', 'Female', '456 Elm St', 2);
+INSERT INTO Admin (ADid, ADbirthDate, ADgender, ADaddress, AccountId) VALUES ('AD003', '1990-10-20', 'Male', '789 Oak St', 3);
