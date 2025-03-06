@@ -21,8 +21,6 @@ public class Book {
     private String type;
     private String language;
 
-    // Constructor, getters, setters, toString
-
     public Book(String bookId, String title, String author, String publisher, LocalDate publishedDate, double price, int quantity, String type, String language) {
         this.bookId = bookId;
         this.title = title;

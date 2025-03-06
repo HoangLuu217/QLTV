@@ -4,27 +4,26 @@
  */
 package Model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Admin
  */
 public class Bill {
+
     private int invoiceCode;
     private int bookCode;
     private int employeeCode;
-    private String time;
+    private LocalDate time;
     private float unitPrice;
-    private int salaryAmount;
-    private String status;
 
-    public Bill(int invoiceCode, int bookCode, int employeeCode, String time, float unitPrice, int salaryAmount, String status) {
+    public Bill(int invoiceCode, int bookCode, int employeeCode, LocalDate time, float unitPrice) {
         this.invoiceCode = invoiceCode;
         this.bookCode = bookCode;
         this.employeeCode = employeeCode;
         this.time = time;
         this.unitPrice = unitPrice;
-        this.salaryAmount = salaryAmount;
-        this.status = status;
     }
 
     public int getInvoiceCode() {
@@ -51,11 +50,11 @@ public class Bill {
         this.employeeCode = employeeCode;
     }
 
-    public String getTime() {
+    public LocalDate getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(LocalDate time) {
         this.time = time;
     }
 
@@ -67,25 +66,9 @@ public class Bill {
         this.unitPrice = unitPrice;
     }
 
-    public int getSalaryAmount() {
-        return salaryAmount;
-    }
-
-    public void setSalaryAmount(int salaryAmount) {
-        this.salaryAmount = salaryAmount;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
-        return "Bill{" + "invoiceCode=" + invoiceCode + ", bookCode=" + bookCode + ", employeeCode=" + employeeCode + ", time=" + time + ", unitPrice=" + unitPrice + ", salaryAmount=" + salaryAmount + ", status=" + status + '}';
+        return "Bill{" + "invoiceCode=" + invoiceCode + ", bookCode=" + bookCode + ", employeeCode=" + employeeCode + ", time=" + time + ", unitPrice=" + unitPrice + '}';
     }
-    
+
 }
