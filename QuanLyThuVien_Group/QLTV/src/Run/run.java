@@ -23,14 +23,17 @@ public class run {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-      
+        DatabaseConnection cnn = new DatabaseConnection();
+      if(cnn != null){
+          System.out.println("ok");
+      }else{
+          System.out.println("Not Ok");
+      }
         
         BookDAO bD = new BookDAO();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter book: ");
         String bookID = sc.nextLine();
-        bD.findBook(bookID);
                 }
     
 }
