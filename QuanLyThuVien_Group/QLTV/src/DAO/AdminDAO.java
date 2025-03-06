@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AdminDAO implements GenericDAO {
@@ -22,7 +23,7 @@ public class AdminDAO implements GenericDAO {
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 String ADid = rs.getString("ADid");
-                java.sql.Date ADbirthDate = rs.getDate("ADbirthDate");
+                String ADbirthDate = rs.getString("ADbirthDate");
                 String ADgender = rs.getString("ADgender");
                 String ADaddress = rs.getString("ADaddress");
                 int AccountId = rs.getInt("AccountId");
