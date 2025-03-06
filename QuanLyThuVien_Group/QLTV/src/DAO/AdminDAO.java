@@ -2,11 +2,12 @@ package DAO;
 
 import Model.Admin;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AdminDAO implements GenericDAO {
@@ -23,11 +24,11 @@ public class AdminDAO implements GenericDAO {
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 String ADid = rs.getString("ADid");
-                String ADbirthDate = rs.getString("ADbirthDate");
+                LocalDate ADbirthDate = rs.getDate("ADbirthDate").toLocalDate();
                 String ADgender = rs.getString("ADgender");
                 String ADaddress = rs.getString("ADaddress");
                 int AccountId = rs.getInt("AccountId");
-                Admin admin = new Admin(ADid, new java.util.Date(ADbirthDate.getTime()), ADgender, ADaddress, AccountId);
+                Admin admin = new Admin(ADid, ADbirthDate, ADgender, ADaddress, AccountId);
                 adminList.add(admin);
             }
         }
@@ -58,7 +59,7 @@ public class AdminDAO implements GenericDAO {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, admin.getADid());
-            stmt.setDate(2, new java.sql.Date(admin.getADbirthDate().getTime()));
+            stmt.setDate(2, Date.valueOf(admin.getADbirthDate()));
             stmt.setString(3, admin.getADgender());
             stmt.setString(4, admin.getADaddress());
             stmt.setInt(5, admin.getAccountId());
@@ -76,7 +77,7 @@ public class AdminDAO implements GenericDAO {
         String query = "UPDATE Admin SET ADbirthDate = ?, ADgender = ?, ADaddress = ?, AccountId = ? WHERE ADid = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setDate(1, new java.sql.Date(admin.getADbirthDate().getTime()));
+            stmt.setDate(1, Date.valueOf(admin.getADbirthDate()));
             stmt.setString(2, admin.getADgender());
             stmt.setString(3, admin.getADaddress());
             stmt.setInt(4, admin.getAccountId());

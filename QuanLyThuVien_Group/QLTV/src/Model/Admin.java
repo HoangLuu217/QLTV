@@ -4,7 +4,8 @@
  */
 package Model;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 public class Admin  {
     private String ADid;
-    private Date ADbirthDate;
+    private LocalDate ADbirthDate;
     private String ADgender;
     private String ADaddress;
     private int AccountId;
@@ -20,7 +21,7 @@ public class Admin  {
     public Admin() {
     }
 
-    public Admin(String ADid, Date ADbirthDate, String ADgender, String ADaddress, int AccountId) {
+    public Admin(String ADid, LocalDate ADbirthDate, String ADgender, String ADaddress, int AccountId) {
         this.ADid = ADid;
         this.ADbirthDate = ADbirthDate;
         this.ADgender = ADgender;
@@ -36,11 +37,11 @@ public class Admin  {
         this.ADid = ADid;
     }
 
-    public Date getADbirthDate() {
+    public LocalDate getADbirthDate() {
         return ADbirthDate;
     }
 
-    public void setADbirthDate(Date ADbirthDate) {
+    public void setADbirthDate(LocalDate ADbirthDate) {
         this.ADbirthDate = ADbirthDate;
     }
 
@@ -70,11 +71,12 @@ public class Admin  {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return "Admin{" +
-                "ADid='" + ADid + '\'' +
-                ", ADbirthDate=" + ADbirthDate +
-                ", ADgender='" + ADgender + '\'' +
-                ", ADaddress='" + ADaddress + '\'' +
+                "ADid='" + ADid  +
+                ", ADbirthDate=" + ADbirthDate.format(formatter) +
+                ", ADgender='" + ADgender  +
+                ", ADaddress='" + ADaddress +
                 ", AccountId=" + AccountId +
                 '}';
     }
