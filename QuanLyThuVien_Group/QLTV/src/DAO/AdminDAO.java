@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AdminDAO implements GenericDAO {
@@ -17,7 +18,7 @@ public class AdminDAO implements GenericDAO {
         loadAdminsFromDatabase();
     }
 
-    private void loadAdminsFromDatabase() throws SQLException {
+    private  void loadAdminsFromDatabase() throws SQLException {
         String query = "SELECT ADid, ADbirthDate, ADgender, ADaddress, AccountId FROM Admin";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
@@ -32,8 +33,23 @@ public class AdminDAO implements GenericDAO {
                 adminList.add(admin);
             }
         }
+        
     }
-
+public HashMap<String,String> loadAdminAcc() throws SQLException{
+    HashMap<String , String > ADacc = new HashMap<>();
+    String query = "Select username , Apass from Admin ad join account acc on ad.accountid = acc.accountid";
+           try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                String userName = rs.getString("username");
+                String APass = rs.getString("Apass");
+                
+                ADacc.put(userName, APass);
+            }
+        }
+           return ADacc;
+}
     @Override
     public List<Admin> getAll() throws SQLException {
         return adminList;
