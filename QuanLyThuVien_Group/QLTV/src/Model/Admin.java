@@ -72,12 +72,10 @@ public class Admin  {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return "Admin{" +
-                "ADid='" + ADid  +
-                ", ADbirthDate=" + ADbirthDate.format(formatter) +
-                ", ADgender='" + ADgender  +
-                ", ADaddress='" + ADaddress +
-                ", AccountId=" + AccountId +
-                '}';
+        return "ADminId=" + ADid  +
+                ", birthDate=" + ADbirthDate.format(formatter) +
+                ", gender=" + ADgender  +
+                ", address=" + ADaddress +
+                ", AccountId=" + AccountId ;
     }
 }

@@ -9,6 +9,7 @@ import DAO.DatabaseConnection;
 import Model.Admin;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,9 +66,12 @@ public class run {
 //        }
 //
 //        // Example of updating an existing admin
+
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 //        try {
-//            AdminDAO adminDAO = new AdminDAO();
-//            Admin updatedAdmin = new Admin("AD123", LocalDate.now(), "Female", "456 Main St", 2);
+//            String date = "21/07/2004";
+//            
+//            Admin updatedAdmin = new Admin("AD001",LocalDate.parse(date,formatter), "male", "Quang Nam", 2);
 //            adminDAO.update(updatedAdmin);
 //            System.out.println("Updated admin: " + updatedAdmin);
 //        } catch (SQLException e) {
