@@ -4,18 +4,22 @@
  */
 package Model;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author Admin
  */
-public class Admin extends Person {
+public class Admin  {
+    private String id;
     private String username;
     private String password;
 
-    public Admin(String id, String name, LocalDate birthDate, String gender, String phoneNumber, String email, String address) {
-        super(id, name, birthDate, gender, phoneNumber, email, address);
+   public Admin() {
+
+    }
+    public Admin(String id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
     }
 
     public String getUsername() {
