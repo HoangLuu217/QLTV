@@ -144,9 +144,6 @@ CREATE TABLE Bill (
 	FOREIGN KEY (Cid) REFERENCES Customer(Cid),
     FOREIGN KEY (employeeCode) REFERENCES Employee(Eid)
 );
-
-USE QLTV10;
-
 -- Insert sample data into the Account table
 INSERT INTO Account (AccountId, username, APass) VALUES (1, 'hoangluu217', 'hoangluu217');
 INSERT INTO Account (AccountId, username, APass) VALUES (2, 'admin2', 'password2');
