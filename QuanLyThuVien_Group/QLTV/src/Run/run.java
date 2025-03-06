@@ -34,41 +34,44 @@ public class run {
         try {
             AdminDAO adminDAO = new AdminDAO();
             List<Admin> admins = adminDAO.getAll();
+            if(admins == null) System.out.println("NUll");
             System.out.println("Admin data:");
             for (Admin admin : admins) {
                 System.out.println(admin);
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         // Example of inserting a new admin
-        try {
-            AdminDAO adminDAO = new AdminDAO();
-            Admin newAdmin = new Admin("AD123", new java.util.Date(), "Male", "123 Main St", 1);
-            adminDAO.insert(newAdmin);
-            System.out.println("Inserted new admin: " + newAdmin);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // Example of updating an existing admin
-        try {
-            AdminDAO adminDAO = new AdminDAO();
-            Admin updatedAdmin = new Admin("AD123", new java.util.Date(), "Female", "456 Main St", 2);
-            adminDAO.update(updatedAdmin);
-            System.out.println("Updated admin: " + updatedAdmin);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // Example of deleting an admin
-        try {
-            AdminDAO adminDAO = new AdminDAO();
-            adminDAO.delete("AD123");
-            System.out.println("Deleted admin with ID: AD123");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//        try {
+//            AdminDAO adminDAO = new AdminDAO();
+//            Admin newAdmin = new Admin("AD123", new java.util.Date(), "Male", "123 Main St", 1);
+//            adminDAO.insert(newAdmin);
+//            System.out.println("Inserted new admin: " + newAdmin);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        // Example of updating an existing admin
+//        try {
+//            AdminDAO adminDAO = new AdminDAO();
+//            Admin updatedAdmin = new Admin("AD123", new java.util.Date(), "Female", "456 Main St", 2);
+//            adminDAO.update(updatedAdmin);
+//            System.out.println("Updated admin: " + updatedAdmin);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        // Example of deleting an admin
+//        try {
+//            AdminDAO adminDAO = new AdminDAO();
+//            adminDAO.delete("AD123");
+//            System.out.println("Deleted admin with ID: AD123");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+}
 }

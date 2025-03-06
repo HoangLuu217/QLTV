@@ -34,7 +34,7 @@ public class AdminDAO implements GenericDAO {
 
     @Override
     public List<Admin> getAll() throws SQLException {
-        return new ArrayList<>(adminList);
+        return adminList;
     }
 
     @Override
