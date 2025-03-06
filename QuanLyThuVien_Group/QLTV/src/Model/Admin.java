@@ -4,51 +4,78 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author Admin
  */
 public class Admin  {
-    private String id;
-    private String username;
-    private String password;
+    private String ADid;
+    private Date ADbirthDate;
+    private String ADgender;
+    private String ADaddress;
+    private int AccountId;
 
-   public Admin() {
-
-    }
-    public Admin(String id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    public Admin() {
     }
 
-    public String getUsername() {
-        return username;
+    public Admin(String ADid, Date ADbirthDate, String ADgender, String ADaddress, int AccountId) {
+        this.ADid = ADid;
+        this.ADbirthDate = ADbirthDate;
+        this.ADgender = ADgender;
+        this.ADaddress = ADaddress;
+        this.AccountId = AccountId;
     }
 
-    public String getId() {
-        return id;
+    public String getADid() {
+        return ADid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setADid(String ADid) {
+        this.ADid = ADid;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Date getADbirthDate() {
+        return ADbirthDate;
     }
 
-    public String getPassword() {
-        return password;
+    public void setADbirthDate(Date ADbirthDate) {
+        this.ADbirthDate = ADbirthDate;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getADgender() {
+        return ADgender;
+    }
+
+    public void setADgender(String ADgender) {
+        this.ADgender = ADgender;
+    }
+
+    public String getADaddress() {
+        return ADaddress;
+    }
+
+    public void setADaddress(String ADaddress) {
+        this.ADaddress = ADaddress;
+    }
+
+    public int getAccountId() {
+        return AccountId;
+    }
+
+    public void setAccountId(int AccountId) {
+        this.AccountId = AccountId;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "Admin{" + "username=" + username + ", password=" + password + '}';
+        return "Admin{" +
+                "ADid='" + ADid + '\'' +
+                ", ADbirthDate=" + ADbirthDate +
+                ", ADgender='" + ADgender + '\'' +
+                ", ADaddress='" + ADaddress + '\'' +
+                ", AccountId=" + AccountId +
+                '}';
     }
-
-} 
+}

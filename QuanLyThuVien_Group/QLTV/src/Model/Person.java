@@ -29,10 +29,5 @@ public abstract class Person {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" + "id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", gender=" + gender + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address=" + address + '}';
-    }
-//hhh
 }
 

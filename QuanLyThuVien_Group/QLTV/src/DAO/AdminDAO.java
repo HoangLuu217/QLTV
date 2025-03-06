@@ -5,39 +5,46 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDAO implements GenericDAO {
-    private HashMap<String, String[]> adminMap = new HashMap<>();
+    private List<Admin> adminList = new ArrayList<>();
 
     public AdminDAO() throws SQLException {
         loadAdminsFromDatabase();
     }
 
     private void loadAdminsFromDatabase() throws SQLException {
-        String query = "SELECT id, name, email FROM Admins";
+        String query = "SELECT ADid, ADbirthDate, ADgender, ADaddress, AccountId FROM Admin";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                String id = rs.getString("id");
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                adminMap.put(id, new String[]{name, email});
+                String ADid = rs.getString("ADid");
+                Date ADbirthDate = rs.getDate("ADbirthDate");
+                String ADgender = rs.getString("ADgender");
+                String ADaddress = rs.getString("ADaddress");
+                int AccountId = rs.getInt("AccountId");
+                Admin admin = new Admin(ADid, ADbirthDate, ADgender, ADaddress, AccountId);
+                adminList.add(admin);
             }
         }
     }
 
     @Override
-    public List<String[]> getAll() throws SQLException {
-        return new ArrayList<>(adminMap.values());
+    public List<Admin> getAll() throws SQLException {
+        return new ArrayList<>(adminList);
     }
 
     @Override
-    public String[] getById(String id) throws SQLException {
-        return adminMap.get(id);
+    public Admin getById(String id) throws SQLException {
+        for (Admin admin : adminList) {
+            if (admin.getADid().equals(id)) {
+                return admin;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -46,14 +53,16 @@ public class AdminDAO implements GenericDAO {
             throw new IllegalArgumentException("Entity must be an instance of Admin");
         }
         Admin admin = (Admin) entity;
-        String query = "INSERT INTO Admins (id, name, email) VALUES (?, ?, ?)";
+        String query = "INSERT INTO Admin (ADid, ADbirthDate, ADgender, ADaddress, AccountId) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, admin.getId());
-            stmt.setString(2, admin.getName());
-            stmt.setString(3, admin.getEmail());
+            stmt.setString(1, admin.getADid());
+            stmt.setDate(2, new java.sql.Date(admin.getADbirthDate().getTime()));
+            stmt.setString(3, admin.getADgender());
+            stmt.setString(4, admin.getADaddress());
+            stmt.setInt(5, admin.getAccountId());
             stmt.executeUpdate();
-            adminMap.put(admin.getId(), new String[]{admin.getName(), admin.getEmail()});
+            adminList.add(admin);
         }
     }
 
@@ -63,25 +72,32 @@ public class AdminDAO implements GenericDAO {
             throw new IllegalArgumentException("Entity must be an instance of Admin");
         }
         Admin admin = (Admin) entity;
-        String query = "UPDATE Admins SET name = ?, email = ? WHERE id = ?";
+        String query = "UPDATE Admin SET ADbirthDate = ?, ADgender = ?, ADaddress = ?, AccountId = ? WHERE ADid = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, admin.getName());
-            stmt.setString(2, admin.getEmail());
-            stmt.setString(3, admin.getId());
+            stmt.setDate(1, new java.sql.Date(admin.getADbirthDate().getTime()));
+            stmt.setString(2, admin.getADgender());
+            stmt.setString(3, admin.getADaddress());
+            stmt.setInt(4, admin.getAccountId());
+            stmt.setString(5, admin.getADid());
             stmt.executeUpdate();
-            adminMap.put(admin.getId(), new String[]{admin.getName(), admin.getEmail()});
+            for (int i = 0; i < adminList.size(); i++) {
+                if (adminList.get(i).getADid().equals(admin.getADid())) {
+                    adminList.set(i, admin);
+                    break;
+                }
+            }
         }
     }
 
     @Override
     public void delete(String id) throws SQLException {
-        String query = "DELETE FROM Admins WHERE id = ?";
+        String query = "DELETE FROM Admin WHERE ADid = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, id);
             stmt.executeUpdate();
-            adminMap.remove(id);
+            adminList.removeIf(admin -> admin.getADid().equals(id));
         }
     }
 }
