@@ -22,11 +22,11 @@ public class AdminDAO implements GenericDAO {
              ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 String ADid = rs.getString("ADid");
-                Date ADbirthDate = rs.getDate("ADbirthDate");
+                java.sql.Date ADbirthDate = rs.getDate("ADbirthDate");
                 String ADgender = rs.getString("ADgender");
                 String ADaddress = rs.getString("ADaddress");
                 int AccountId = rs.getInt("AccountId");
-                Admin admin = new Admin(ADid, ADbirthDate, ADgender, ADaddress, AccountId);
+                Admin admin = new Admin(ADid, new java.util.Date(ADbirthDate.getTime()), ADgender, ADaddress, AccountId);
                 adminList.add(admin);
             }
         }
