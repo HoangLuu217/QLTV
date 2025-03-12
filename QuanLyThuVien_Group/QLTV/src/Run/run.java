@@ -54,7 +54,7 @@ public class run {
             if(key.equals("hoangluu217")){
             System.out.println(val);
             }
-        }
+     }
         // Example of inserting a new admin
 //        try {
 //            AdminDAO adminDAO = new AdminDAO();
@@ -69,9 +69,9 @@ public class run {
 
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 //        try {
-//            String date = "21/07/2004";
+//            String date = "22/07/2004";
 //            
-//            Admin updatedAdmin = new Admin("AD001",LocalDate.parse(date,formatter), "male", "Quang Nam", 2);
+//            Admin updatedAdmin = new Admin("AD002",LocalDate.parse(date,formatter), "male", "Quang Nam", 2);
 //            adminDAO.update(updatedAdmin);
 //            System.out.println("Updated admin: " + updatedAdmin);
 //        } catch (SQLException e) {
